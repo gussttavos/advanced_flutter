@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class NextEventPlayer {
@@ -41,14 +40,20 @@ class NextEventPlayer {
   static String _getInitials(String name) {
     if (name.isEmpty) return '-';
 
-    final names = name.split(' ');
-    if (names.length == 1) return names.first.substring(0, 2).toUpperCase();
+    final names = name.toUpperCase().split(' ');
+    if (names.length == 1) {
+      if (names.first.length > 1) {
+        return names.first.substring(0, 2);
+      } else {
+        return names.first;
+      }
+    }
 
     if (names.length > 1) {
       final firstName = names.first.substring(0, 1);
       final lastName = names.last.substring(0, 1);
 
-      return (firstName + lastName).toUpperCase();
+      return (firstName + lastName);
     }
 
     return '-';
@@ -62,22 +67,24 @@ void main() {
         isConfirmed: true,
       ).initials;
 
-  test('should return the first letter of the names', () {
-    expect(
-      initialsOf('Gustavo Simões'),
-      'GS',
-    );
-    expect(
-      initialsOf('Gustavo'),
-      'GU',
-    );
-    expect(
-      initialsOf('Gustavo Teixeira Simões'),
-      'GS',
-    );
-    expect(
-      initialsOf(''),
-      '-',
-    );
-  });
+  test(
+    'should return the first letters of the names',
+    () => expect(initialsOf('Gustavo Simões'), 'GS'),
+  );
+
+  test(
+    'should return the first letters of the first name'
+    'when there is no second name',
+    () => expect(initialsOf('G'), 'G'),
+  );
+
+  test(
+    'should return "-" when the name is empty',
+    () => expect(initialsOf(''), '-'),
+  );
+
+  test(
+    'should convert to uppercase',
+    () => expect(initialsOf('name'), 'NA'),
+  );
 }
