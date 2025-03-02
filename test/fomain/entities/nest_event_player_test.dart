@@ -1,23 +1,44 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class NestEventPlayer {
+class NextEventPlayer {
   final String id;
   final String name;
+  final String initials;
   final String? photo;
   final String? position;
   final bool isConfirmed;
   final DateTime? confirmDate;
 
-  NestEventPlayer({
+  NextEventPlayer._({
     required this.id,
     required this.name,
     required this.isConfirmed,
+    required this.initials,
     this.photo,
     this.position,
     this.confirmDate,
   });
 
-  String get initials {
+  factory NextEventPlayer({
+    required String id,
+    required String name,
+    required bool isConfirmed,
+    String? photo,
+    String? position,
+    DateTime? confirmDate,
+  }) =>
+      NextEventPlayer._(
+        id: id,
+        name: name,
+        isConfirmed: isConfirmed,
+        photo: photo,
+        position: position,
+        confirmDate: confirmDate,
+        initials: _getInitials(name),
+      );
+
+  static String _getInitials(String name) {
     if (name.isEmpty) return '-';
 
     final names = name.split(' ');
@@ -35,7 +56,7 @@ class NestEventPlayer {
 }
 
 void main() {
-  String initialsOf(String name) => NestEventPlayer(
+  String initialsOf(String name) => NextEventPlayer(
         name: name,
         id: '',
         isConfirmed: true,
