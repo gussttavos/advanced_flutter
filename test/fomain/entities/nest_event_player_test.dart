@@ -18,10 +18,11 @@ class NestEventPlayer {
   });
 
   String get initials {
+    if (name.isEmpty) return '-';
+
     final names = name.split(' ');
-    if (names.length == 1) {
-      return names.first.substring(0, 2).toUpperCase();
-    }
+    if (names.length == 1) return names.first.substring(0, 2).toUpperCase();
+
     if (names.length > 1) {
       final firstName = names.first.substring(0, 1);
       final lastName = names.last.substring(0, 1);
@@ -34,31 +35,28 @@ class NestEventPlayer {
 }
 
 void main() {
+  String initialsOf(String name) => NestEventPlayer(
+        name: name,
+        id: '',
+        isConfirmed: true,
+      ).initials;
+
   test('should return the first letter of the names', () {
-    // arrange
-    final player = NestEventPlayer(
-      name: 'Gustavo Simões',
-      id: '',
-      isConfirmed: true,
+    expect(
+      initialsOf('Gustavo Simões'),
+      'GS',
     );
-
-    // act
-    final initials = player.initials;
-
-    // assert
-    expect(initials, 'GS');
-
-    // arrange
-    final player2 = NestEventPlayer(
-      name: 'Gustavo',
-      id: '',
-      isConfirmed: true,
+    expect(
+      initialsOf('Gustavo'),
+      'GU',
     );
-
-    // act
-    final initials2 = player2.initials;
-
-    // assert
-    expect(initials2, 'GU');
+    expect(
+      initialsOf('Gustavo Teixeira Simões'),
+      'GS',
+    );
+    expect(
+      initialsOf(''),
+      '-',
+    );
   });
 }
