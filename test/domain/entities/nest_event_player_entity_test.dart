@@ -1,4 +1,4 @@
-import 'package:advanced_flutter/domain/entities/next_events_player_entity.dart';
+import 'package:advanced_flutter/domain/entities/next_event_player_entity.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
