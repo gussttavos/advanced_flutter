@@ -1,9 +1,9 @@
-import 'package:advanced_flutter/domain/entities/next_events_player.dart';
+import 'package:advanced_flutter/domain/entities/next_events_player_entity.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  String initialsOf(String name) => NextEventPlayer(
+  String initialsOf(String name) => NextEventPlayerEntity(
         name: name,
         id: '',
         isConfirmed: true,
