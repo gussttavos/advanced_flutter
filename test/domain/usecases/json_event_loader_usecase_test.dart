@@ -1,10 +1,9 @@
 import 'dart:math';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'package:advanced_flutter/domain/entities/next_event_entity.dart';
 import 'package:advanced_flutter/domain/usecases/next_event_loader_usecase.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import '../../../lib/domain/repository/load_next_event_repository.dart';
+import 'package:advanced_flutter/domain/repository/load_next_event_repository.dart';
 
 
 class LoadNextEventSpyRepositoryImpl implements LoadNextEventRepository {
@@ -19,7 +18,6 @@ class LoadNextEventSpyRepositoryImpl implements LoadNextEventRepository {
     return output!;
   }
 }
-
 
 void main() {
   late String id;
