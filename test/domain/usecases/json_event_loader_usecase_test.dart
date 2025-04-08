@@ -1,10 +1,10 @@
-import 'dart:math';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:advanced_flutter/domain/entities/next_event_entity.dart';
 import 'package:advanced_flutter/domain/usecases/next_event_loader_usecase.dart';
 import 'package:advanced_flutter/domain/repository/load_next_event_repository.dart';
 
+import '../../helpers/fakes.dart';
 
 class LoadNextEventSpyRepositoryImpl implements LoadNextEventRepository {
   String? groupId;
@@ -25,7 +25,7 @@ void main() {
   late NextEventLoaderUsecase sut;
 
   setUp(() {
-    id = Random().nextInt(50000).toString();
+    id = anyString();
     repository = LoadNextEventSpyRepositoryImpl();
     repository.output = NextEventEntity(
       groupName: 'any_group_name',
